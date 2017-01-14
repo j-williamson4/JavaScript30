@@ -59,6 +59,29 @@
 
 <script>
 
+  
+  function playSound(e) {
+   const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); 
+   const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);        
+   if(!audio) return;
+   audio.currentTime = 0; // rewind if keyPress before cut-off time 
+   audio.play();
+   // transform styling of key      
+   key.classList.add('playing');
+  }
+     
+  function removeTransition(e) {
+     if(e.propertyName !== 'transform') return;
+     // once transition ends remove the class 'playing'
+     this.classList.remove('playing');  
+  }    
+    
+ // select all elements that are part of key class    
+ const keys = document.querySelectorAll('.key');    
+ keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+ // listens for keyboard input
+ window.addEventListener('keydown', playSound);     
+
 </script>
 
 
