@@ -7,10 +7,14 @@ function setDate() {
     const second = now.getSeconds();
     const minute = now.getMinutes();
     const hour = now.getHours();
+    console.log(second);
+    console.log(minute);
+    console.log(hour);
     const secToDeg = ((second/60) * 360) + 90;
     const minToDeg = ((minute/60) * 360) + 90;
     const hourToDeg = ((hour/12) * 360) + 90;
     secondHand.style.transform = `rotate(${secToDeg}deg)`;
+    secondHand.style.backgroundColor = "red";
     minuteHand.style.transform = `rotate(${minToDeg}deg)`;
     hourHand.style.transform = `rotate(${hourToDeg}deg)`;   
 }
