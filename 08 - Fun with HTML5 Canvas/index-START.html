@@ -3,9 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>HTML5 Canvas</title>
+  <style> 
+      #clear {
+            width: 75%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: #3CBC8D;
+    color: white;
+      }  
+  </style>
 </head>
 <body>
+    <center><h1>Draw on me!</h1></center>
 <canvas id="draw" width="800" height="800"></canvas>
+    <center><input type="button" id="clear" value="Clear"></center>    
 <script>
  const canvas = document.querySelector('#draw');
  const ctx = canvas.getContext('2d');
@@ -39,7 +52,7 @@
          hue = 0; 
      }
      
-     if(ctx.lineWidth >= 50 || ctx.lineWidth <= 1) {
+     if(ctx.lineWidth >= 44 || ctx.lineWidth <= 1) {
          direction = !direction;
      }
      if(direction) {
@@ -49,6 +62,10 @@
      }
  }    
 
+      document.getElementById('clear').addEventListener('click', function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }, false);    
+    
  canvas.addEventListener('mousedown', (e) => {
      isDrawing = true;
      [lastX, lastY] = [e.offsetX, e.offsetY];
@@ -59,7 +76,8 @@
  canvas.addEventListener('mousemove', draw);
 
  canvas.addEventListener('mouseup', () => isDrawing = false);
- canvas.addEventListener('mouseout', () => isDrawing = false);    
+ canvas.addEventListener('mouseout', () => isDrawing = false);
+    
 </script>
 
 <style>
